@@ -23,13 +23,17 @@
         border-style: none;
         cursor: pointer;
         transition: transform 0.1s ease-in-out;
-        outline: none;
+        outline: 0; /* Remove the outline on focus/active state */
       }
 
       button:active {
         transform: scale(0.8);
         transition: transform 0.1s ease-in-out;
-        outline: none;
+        outline: 0; /* Remove the outline on focus/active state */
+      }
+
+      p{
+        color: aliceblue;
       }
 
     </style>
@@ -48,11 +52,17 @@
       playGame('scissors');
     ">Scissors</button>
 
+    <p class="js-results"></p>
+    <p class="js-moves"></p>
+    <p class="js-score"></p>
+
     <button onclick="
       score.wins = 0;
       score.losses = 0;
       score.ties = 0;
       localStorage.removeItem('score');
+      document.querySelector('.js-score')
+      .innerHTML = `wins: ${score.wins} , losses: ${score.losses} , Ties: ${score.ties}`;
     ">Reset score</button>
 
 
@@ -67,6 +77,17 @@
           ties:0
         };
       }
+
+      document.querySelector('.js-score')
+      .innerHTML = `wins: ${score.wins} , losses: ${score.losses} , Ties: ${score.ties}`;
+
+      document.querySelector('.js-moves')
+      .innerHTML = `you picked ${playerMove} , computer picked ${computerMove}`;
+
+      document.querySelector('.js-results')
+      .innerHTML = `${result}`;
+
+
 
       function playGame(playerMove){
         const computerMove = pickComputerMove();
@@ -113,14 +134,17 @@
 
         localStorage.setItem('score', JSON.stringify(score));
 
-        
-          
-        
 
-        setTimeout(function() {
-  alert(`you picked ${playerMove} , computer picked ${computerMove} , ${result}
-  wins: ${score.wins} , losses: ${score.losses} , Ties: ${score.ties}`);
-}, 300); // 1000 milliseconds = 1 second
+        document.querySelector('.js-score')
+      .innerHTML = `wins: ${score.wins} , losses: ${score.losses} , Ties: ${score.ties}`;
+
+      document.querySelector('.js-moves')
+      .innerHTML = `you picked ${playerMove} , computer picked ${computerMove}`;
+
+      document.querySelector('.js-results')
+      .innerHTML = `${result}`;
+
+        
       }
 
       function pickComputerMove(){
