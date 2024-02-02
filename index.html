@@ -21,6 +21,13 @@
         padding: 10px;
         border-radius: 20px;
         border-style: none;
+        cursor: pointer;
+        transition: transform 0.1s ease-in-out;
+      }
+
+      button:active {
+        transform: scale(0.8);
+        transition: transform 0.1s ease-in-out;
       }
 
     </style>
@@ -108,8 +115,10 @@
           
         
 
-        alert(`you picked ${playerMove} , computer picked ${computerMove} , ${result}
-wins: ${score.wins} , losses: ${score.losses} , Ties: ${score.ties}`);
+        setTimeout(function() {
+  alert(`you picked ${playerMove} , computer picked ${computerMove} , ${result}
+  wins: ${score.wins} , losses: ${score.losses} , Ties: ${score.ties}`);
+}, 300); // 1000 milliseconds = 1 second
       }
 
       function pickComputerMove(){
